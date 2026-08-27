@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="frontend/assets/MaaSLOGO.png" alt="SM-MaaS" width="320">
+  <img src="frontend/assets/MaaSLOGO.png" alt="SM-MaaS" width="520">
 </p>
 
 # MASS 平台（Mass AI SaaS Stack）

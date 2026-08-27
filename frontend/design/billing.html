@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>用量账单 · MASS</title>
+<link rel="stylesheet" href="assets/design.css" />
+<style>
+  .bill-row { display:flex; align-items:center; gap:12px; padding:14px 16px; border-bottom:.5px solid var(--sep); }
+  .bill-row:last-child { border-bottom:0; }
+  .bill-ic { width:38px; height:38px; border-radius:11px; display:flex; align-items:center; justify-content:center; font-size:18px; flex:none; }
+  .bill-main { flex:1; min-width:0; }
+  .bill-tt { font-size:15px; font-weight:500; }
+  .bill-sub { font-size:12px; color:var(--label-3); margin-top:2px; }
+  .bill-amt { font-size:16px; font-weight:700; font-variant-numeric:tabular-nums; }
+  .amt-plus { color:var(--green); } .amt-minus { color:var(--label); }
+</style>
+</head>
+<body>
+  <nav class="navbar">
+    <span class="navbar__logo"><span data-i="zap" data-sz="18" style="color:#fff"></span></span>
+    <span class="navbar__title">MAAS</span>
+    <span class="navbar__spacer"></span>
+    <span class="navbar__avatar">U</span>
+  </nav>
+
+  <main class="page">
+    <div class="page-head">
+      <div>
+        <h1>用量账单</h1>
+        <div class="sub">请求、Token 与成本明细</div>
+      </div>
+      <div class="segment">
+        <button class="is-on" onclick="seg(this)">近 7 天</button>
+        <button onclick="seg(this)">近 30 天</button>
+        <button onclick="seg(this)">自定义</button>
+      </div>
+    </div>
+
+    <section class="row row-3" style="margin-bottom:var(--gap);">
+      <article class="card"><div class="card__title">总消费</div><div class="stat"><small>¥</small><span class="num">128.40</span></div><div class="stat-sub">本期</div></article>
+      <article class="card"><div class="card__title">总调用</div><div class="stat"><span class="num">3.2M</span><small>Token</small></div><div class="stat-sub">本期</div></article>
+      <article class="card"><div class="card__title">请求数</div><div class="stat"><span class="num">1,204</span></div><div class="stat-sub">本期</div></article>
+    </section>
+
+    <div class="card">
+      <div class="card__title">交易记录 <a class="link" onclick="MD.toast('全部记录','info')">查看全部</a></div>
+      <div>
+        <div class="bill-row">
+          <span class="bill-ic" style="background:var(--green-soft);color:var(--green);"><span data-i="coin" data-sz="18"></span></span>
+          <div class="bill-main"><div class="bill-tt">账户充值</div><div class="bill-sub">2026-08-20 14:22 · 余额充值</div></div>
+          <div class="bill-amt amt-plus">+¥100.00</div>
+        </div>
+        <div class="bill-row">
+          <span class="bill-ic" style="background:var(--blue-soft);color:var(--blue);"><span data-i="zap" data-sz="18"></span></span>
+          <div class="bill-main"><div class="bill-tt">按量调用扣费</div><div class="bill-sub">2026-08-20 13:05 · gpt-4o</div></div>
+          <div class="bill-amt amt-minus">−¥12.30</div>
+        </div>
+        <div class="bill-row">
+          <span class="bill-ic" style="background:var(--brand-soft);color:var(--brand);"><span data-i="card" data-sz="18"></span></span>
+          <div class="bill-main"><div class="bill-tt">订阅扣费</div><div class="bill-sub">2026-08-18 09:00 · 专业版月付</div></div>
+          <div class="bill-amt amt-minus">−¥99.00</div>
+        </div>
+        <div class="bill-row">
+          <span class="bill-ic" style="background:var(--orange-soft);color:var(--orange);"><span data-i="bolt" data-sz="18"></span></span>
+          <div class="bill-main"><div class="bill-tt">Token 加油包</div><div class="bill-sub">2026-08-15 20:11 · 一次性购买</div></div>
+          <div class="bill-amt amt-minus">−¥49.00</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="assets/design.js"></script>
+  <script>function seg(b){document.querySelectorAll('.segment button').forEach(function(x){x.classList.remove('is-on');});b.classList.add('is-on');}</script>
+</body>
+</html>

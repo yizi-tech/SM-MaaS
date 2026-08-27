@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>充值 · MASS</title>
+<link rel="stylesheet" href="assets/design.css" />
+<style>
+  .amount-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:14px; }
+  @media (max-width:560px){ .amount-grid{ grid-template-columns:repeat(2,1fr);} }
+  .amount-chip { height:58px; border-radius:14px; background:var(--fill); display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:700; cursor:pointer; border:1.5px solid transparent; transition:.15s; font-variant-numeric:tabular-nums; }
+  .amount-chip.is-on { background:var(--brand-soft); color:var(--brand); border-color:var(--brand); }
+  .pay-row { display:flex; align-items:center; gap:12px; padding:14px 16px; border-bottom:.5px solid var(--sep); cursor:pointer; }
+  .pay-row:last-child{ border-bottom:0; }
+  .pay-row.is-on .pay-check { background:var(--brand); border-color:var(--brand); color:#fff; }
+  .pay-check { width:22px; height:22px; border-radius:50%; border:1.5px solid var(--sep); display:flex; align-items:center; justify-content:center; color:transparent; flex:none; }
+  .pay-ic { width:36px;height:36px;border-radius:10px;background:var(--brand-soft);color:var(--brand);display:flex;align-items:center;justify-content:center;font-size:18px;flex:none; }
+  .pay-main{ flex:1; } .pay-tt{ font-size:15px; font-weight:500; } .pay-sub{ font-size:12px; color:var(--label-3); }
+
+  .pkg-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px; }
+  .tp-card { background:var(--card); border-radius:18px; box-shadow:var(--shadow-sm); padding:16px; position:relative; cursor:pointer; border:1.5px solid transparent; transition:.15s; }
+  .tp-card:hover{ box-shadow:var(--shadow); }
+  .tp-card.is-hot{ border-color:var(--brand); }
+  .tp-card .flag { position:absolute; top:12px; right:12px; font-size:11px; font-weight:700; color:var(--accent); background:var(--accent-soft); padding:2px 8px; border-radius:999px; }
+  .tp-name{ font-size:15px; font-weight:600; } .tp-desc{ font-size:12px; color:var(--label-3); margin-top:2px; min-height:32px; }
+  .tp-tokens{ font-size:22px; font-weight:800; margin-top:8px; letter-spacing:-.4px; }
+  .tp-tokens small{ font-size:13px; font-weight:500; color:var(--label-3); }
+  .tp-bonus{ display:inline-block; font-size:11px; font-weight:600; color:var(--accent); background:var(--accent-soft); padding:2px 8px; border-radius:999px; margin-top:6px; }
+  .tp-price{ font-size:16px; font-weight:700; margin-top:10px; } .tp-price small{ font-size:12px; color:var(--label-3); font-weight:500; }
+</style>
+</head>
+<body>
+  <nav class="navbar">
+    <span class="navbar__logo"><span data-i="zap" data-sz="18" style="color:#fff"></span></span>
+    <span class="navbar__title">MAAS</span>
+    <span class="navbar__spacer"></span>
+    <span class="navbar__avatar">U</span>
+  </nav>
+
+  <main class="page">
+    <div class="page-head"><div><h1>充值</h1><div class="sub">余额即时到账，用于按量付费调用</div></div></div>
+
+    <section class="card" style="margin-bottom:var(--gap);">
+      <div class="card__title">充值金额</div>
+      <div class="amount-grid">
+        <div class="amount-chip" onclick="pickAmt(this)">¥50</div>
+        <div class="amount-chip is-on" onclick="pickAmt(this)">¥100</div>
+        <div class="amount-chip" onclick="pickAmt(this)">¥200</div>
+        <div class="amount-chip" onclick="pickAmt(this)">¥500</div>
+      </div>
+      <div class="field">
+        <label>自定义金额（元）</label>
+        <input class="input num" type="number" placeholder="输入金额，最低 ¥10" inputmode="numeric">
+      </div>
+      <div class="card__title" style="margin-top:6px;">支付方式</div>
+      <div class="list" style="box-shadow:none;border:.5px solid var(--sep);">
+        <div class="pay-row is-on" onclick="pickPay(this)">
+          <span class="pay-ic"><span data-i="coin" data-sz="18"></span></span>
+          <div class="pay-main"><div class="pay-tt">在线支付（易支付）</div><div class="pay-sub">微信 / 支付宝 / 网银</div></div>
+          <span class="pay-check"><span data-i="check" data-sz="13"></span></span>
+        </div>
+        <div class="pay-row" onclick="pickPay(this)">
+          <span class="pay-ic" style="background:var(--green-soft);color:var(--green);"><span data-i="card" data-sz="18"></span></span>
+          <div class="pay-main"><div class="pay-tt">企业对公转账</div><div class="pay-sub">开票后充值</div></div>
+          <span class="pay-check"><span data-i="check" data-sz="13"></span></span>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-lg" style="margin-top:16px;" onclick="MD.toast('跳转支付（原型）','success')">立即充值</button>
+    </section>
+
+    <section class="card">
+      <div class="card__title">Token 加油包 <span class="tag tag--info">可用额度 <b class="num">0</b></span></div>
+      <div class="pkg-grid">
+        <div class="tp-card">
+          <div class="tp-name">体验包</div>
+          <div class="tp-desc">新手尝鲜，低成本起步</div>
+          <div class="tp-tokens"><span class="num">100K</span> <small>Tokens</small></div>
+          <span class="tp-bonus">赠送 10K</span>
+          <div class="tp-price">¥9.90 <small>一次性</small></div>
+        </div>
+        <div class="tp-card is-hot">
+          <div class="flag">性价比之选</div>
+          <div class="tp-name">标准包</div>
+          <div class="tp-desc">团队常用，单价更优</div>
+          <div class="tp-tokens"><span class="num">1M</span> <small>Tokens</small></div>
+          <span class="tp-bonus">赠送 150K</span>
+          <div class="tp-price">¥79.00 <small>一次性</small></div>
+        </div>
+        <div class="tp-card">
+          <div class="tp-name">专业包</div>
+          <div class="tp-desc">高用量生产场景</div>
+          <div class="tp-tokens"><span class="num">10M</span> <small>Tokens</small></div>
+          <span class="tp-bonus">赠送 2M</span>
+          <div class="tp-price">¥699.00 <small>一次性</small></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/design.js"></script>
+  <script>
+    function pickAmt(el){ document.querySelectorAll('.amount-chip').forEach(function(c){c.classList.remove('is-on');}); el.classList.add('is-on'); }
+    function pickPay(el){ document.querySelectorAll('.pay-row').forEach(function(r){r.classList.remove('is-on');}); el.classList.add('is-on'); }
+  </script>
+</body>
+</html>

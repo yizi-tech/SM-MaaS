@@ -1,0 +1,350 @@
+/* =========================================================
+   MiniMax 风格开发者平台登录页 —— 本地样式（无 CDN）
+   组织方式：Design Tokens → 页面骨架 → BrandLogo → LoginCard
+   → QRLogin / LoginTabs / Forms → Agreement / LoginButton
+   → RegionTip → ResourceCards → Responsive
+   ========================================================= */
+
+:root {
+  /* —— 颜色（黑白灰克制体系，蓝仅用于链接） —— */
+  --mm-bg: #f7f7f7;
+  --mm-card: #ffffff;
+  --mm-border: #e8e8e8;
+  --mm-border-soft: #ededed;
+  --mm-text: #181818;
+  --mm-text-2: #666666;
+  --mm-text-3: #999999;
+  --mm-text-4: #b5b5b5;
+  --mm-link: #1677ff;          /* 仅用于「获取验证码」等必要交互链接 */
+  --mm-wechat: #07c160;
+  --mm-btn: #181818;
+  --mm-btn-hover: #2a2a2a;
+
+  /* —— 尺寸 / 圆角 / 阴影 —— */
+  --mm-card-w: 630px;
+  --mm-card-radius: 14px;
+  --mm-input-radius: 10px;
+  --mm-qr-radius: 8px;
+  --mm-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  --mm-qr-shadow: 0 3px 15px rgba(0, 0, 0, 0.06);
+
+  /* —— 间距（4/8 体系） —— */
+  --mm-gap-logo-card: 48px;
+  --mm-gap-card-cards: 42px;
+  --mm-gap-tab-input: 28px;
+  --mm-gap-input: 14px;
+  --mm-gap-agreement: 14px;
+  --mm-gap-agreement-btn: 18px;
+  --mm-gap-btn-tip: 12px;
+
+  --mm-font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--mm-font);
+  background: var(--mm-bg);
+  color: var(--mm-text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+}
+
+/* ==================== 页面骨架 ==================== */
+.mm-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* 顶部 120px 留白，不用 justify-content: center 避免过度居中 */
+  padding-top: 120px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 60px;
+}
+
+/* ==================== BrandLogo ==================== */
+.mm-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 180px;
+  justify-content: center;
+  margin-bottom: var(--mm-gap-logo-card);
+  user-select: none;
+}
+.mm-logo__icon { width: 28px; height: 28px; flex: none; display: flex; align-items: center; justify-content: center; }
+.mm-logo__text {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--mm-text);
+  letter-spacing: -0.5px;   /* 字母间距略紧 */
+  line-height: 1;
+}
+
+/* ==================== LoginCard ==================== */
+.mm-card {
+  width: var(--mm-card-w);
+  min-height: 380px;
+  background: var(--mm-card);
+  border-radius: var(--mm-card-radius);
+  box-shadow: var(--mm-card-shadow);
+  padding: 28px;
+}
+.mm-card__body {
+  display: flex;
+  align-items: stretch;
+}
+.mm-card__left {
+  flex: 0 0 48%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 24px;
+}
+.mm-card__divider {
+  width: 1px;
+  background: #f0f0f0;
+  flex: none;
+}
+.mm-card__right {
+  flex: 0 0 52%;
+  padding-left: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==================== QRLogin（左侧扫码） ==================== */
+.mm-qr__title {
+  align-self: flex-start;
+  font-size: 14px;
+  font-weight: 400;
+  color: #222222;
+  margin: 0 0 16px;
+}
+.mm-qr__box {
+  width: 164px;
+  height: 164px;
+  background: #ffffff;
+  border-radius: var(--mm-qr-radius);
+  box-shadow: var(--mm-qr-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mm-qr__placeholder {
+  width: 148px;
+  height: 148px;
+  border: 1px dashed #dcdcdc;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: 10px;
+  color: #c0c0c0;
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.6;
+}
+.mm-qr__label {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--mm-text);
+}
+.mm-qr__label svg { width: 16px; height: 16px; }
+
+/* ==================== LoginTabs ==================== */
+.mm-tabs {
+  display: flex;
+  gap: 24px;
+  margin-bottom: var(--mm-gap-tab-input);
+}
+.mm-tabs button {
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0 0 6px;
+  font-family: var(--mm-font);
+  font-size: 15px;
+  cursor: pointer;
+  position: relative;
+  color: var(--mm-text-3);
+  font-weight: 400;
+  transition: color 0.2s;
+}
+.mm-tabs button.is-on {
+  color: var(--mm-text);
+  font-weight: 500;
+}
+.mm-tabs button.is-on::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--mm-text);
+}
+
+/* ==================== Forms ==================== */
+.mm-form { display: flex; flex-direction: column; }
+.mm-form[hidden] { display: none; }
+.mm-input {
+  width: 100%;
+  height: 42px;
+  padding: 0 14px;
+  background: #ffffff;
+  border: 1px solid var(--mm-border);
+  border-radius: var(--mm-input-radius);
+  font-family: var(--mm-font);
+  font-size: 13px;
+  color: var(--mm-text);
+  transition: border-color 0.2s;
+}
+.mm-input::placeholder { color: var(--mm-text-3); }
+.mm-input:focus {
+  outline: none;
+  border-color: #c9c9c9;   /* 变深即可，无蓝色 glow */
+}
+.mm-form .mm-input + .mm-input,
+.mm-form .mm-input + .mm-code,
+.mm-form .mm-code + .mm-input { margin-top: var(--mm-gap-input); }
+
+/* 验证码整体输入框 */
+.mm-code { position: relative; }
+.mm-code .mm-input { padding-right: 104px; }
+.mm-code__btn {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  background: none;
+  font-family: var(--mm-font);
+  font-size: 13px;
+  color: var(--mm-link);
+  cursor: pointer;
+  padding: 0;
+}
+.mm-code__btn[disabled] { color: var(--mm-text-3); cursor: default; }
+
+/* 校验错误提示 */
+.mm-error {
+  font-size: 12px;
+  color: #f5222d;
+  line-height: 18px;
+  margin-top: 6px;
+  display: none;
+}
+.mm-error.show { display: block; }
+
+/* ==================== Agreement ==================== */
+.mm-agreement {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  margin-top: var(--mm-gap-agreement);
+  cursor: pointer;
+  user-select: none;
+}
+.mm-agreement input { display: none; }
+.mm-agreement .mm-check {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  margin-top: 2px;
+  border: 1px solid #c9c9c9;
+  border-radius: 3px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s;
+}
+.mm-agreement .mm-check svg { width: 10px; height: 10px; opacity: 0; }
+.mm-agreement input:checked + .mm-check {
+  background: var(--mm-btn);
+  border-color: var(--mm-btn);
+}
+.mm-agreement input:checked + .mm-check svg { opacity: 1; }
+.mm-agreement__text {
+  font-size: 12px;
+  color: var(--mm-text-3);
+  line-height: 18px;
+}
+.mm-agreement__text a { color: var(--mm-text-2); text-decoration: none; cursor: pointer; }
+.mm-agreement__text a:hover { color: var(--mm-text); }
+
+/* ==================== LoginButton ==================== */
+.mm-submit {
+  width: 100%;
+  height: 44px;
+  margin-top: var(--mm-gap-agreement-btn);
+  border: 0;
+  border-radius: var(--mm-input-radius);
+  background: var(--mm-btn);
+  color: #ffffff;
+  font-family: var(--mm-font);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.12s;
+}
+.mm-submit:hover { background: var(--mm-btn-hover); }
+.mm-submit:active { transform: scale(0.98); }
+
+/* ==================== RegionTip ==================== */
+.mm-region {
+  margin-top: var(--mm-gap-btn-tip);
+  text-align: center;
+  font-size: 11px;
+  color: var(--mm-text-4);
+}
+
+/* ==================== ResourceCards ==================== */
+.mm-resources {
+  width: var(--mm-card-w);
+  margin-top: var(--mm-gap-card-cards);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+.mm-resource {
+  height: 112px;
+  background: var(--mm-card);
+  border: 1px solid var(--mm-border-soft);
+  border-radius: var(--mm-card-radius);
+  padding: 18px 16px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.mm-resource:hover {
+  background: #fafafa;
+  border-color: #e0e0e0;
+  transform: translateY(-1px);
+}
+.mm-resource__icon { width: 16px; height: 16px; color: var(--mm-text); }
+.mm-resource__icon svg { width: 16px; height: 16px; display: block; }
+.mm-resource__title { font-size: 15px; font-weight: 500; color: var(--mm-text); }
+.mm-resource__desc { font-size: 12px; color: #777777; margin-top: 4px; }
+
+/* ==================== Responsive ==================== */
+@media (max-width: 768px) {
+  .mm-page { padding-top: 56px; padding-left: 20px; padding-right: 20px; }
+  .mm-card, .mm-resources { width: 100%; }
+  .mm-card__body { flex-direction: column; }
+  .mm-card__left { flex: none; padding-right: 0; padding-bottom: 24px; }
+  .mm-card__divider { width: auto; height: 1px; }
+  .mm-card__right { flex: none; padding-left: 0; padding-top: 24px; }
+  .mm-resources { grid-template-columns: 1fr; gap: 14px; }
+}

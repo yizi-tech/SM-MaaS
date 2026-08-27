@@ -1,0 +1,165 @@
+/* ===== 基础兜底（确保多页面外壳布局正确） ===== */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { font-family: var(--font-sans, "Inter", "Noto Sans SC", system-ui, -apple-system, sans-serif); background: var(--bg-body, #f5f7fb); color: var(--text-1, #1f2430); }
+.app { display: flex; min-height: 100vh; }
+
+/* ===== 页面级补充样式（原单体内联 <style> 移植） ===== */
+/* 创建 Key 弹窗：模型多选 */
+.model-checks{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;}
+.model-check{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-2);padding:8px 10px;
+  border:1px solid var(--border-1);border-radius:var(--r-sm);cursor:pointer;transition:all .15s;user-select:none;}
+.model-check:hover{border-color:var(--brand-300);}
+.model-check input{accent-color:var(--brand-500);flex:none;}
+.model-check.is-on{border-color:var(--brand-500);background:var(--brand-50);color:var(--brand-700);font-weight:500;}
+/* 创建成功后的密钥展示盒 */
+.key-tip{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--c-warn);
+  background:#fff3e8;border:1px solid #ffd6a8;border-radius:var(--r-md);padding:10px 12px;line-height:1.6;}
+.key-box{display:flex;align-items:center;gap:8px;background:var(--gray-1);border:1px solid var(--border-1);
+  border-radius:var(--r-md);padding:12px 14px;margin-top:12px;}
+.key-box code{font-family:var(--font-num);font-size:13px;color:var(--text-1);word-break:break-all;flex:1;line-height:1.6;}
+/* 实名认证状态横幅 */
+.verify-banner{display:flex;gap:14px;align-items:flex-start;padding:22px;border-radius:var(--r-lg);
+  background:var(--bg-card);border:1px solid var(--border-2);box-shadow:var(--shadow-sm);max-width:640px;}
+.vb-ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex:none;}
+.vb-ic--warn{background:#fff3e8;color:var(--c-warn);}
+.vb-ic--success{background:#e8f9ed;color:var(--c-success);}
+.vb-ic--danger{background:#ffece8;color:var(--c-danger);}
+.vb-title{font-size:15px;font-weight:600;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.vb-desc{font-size:13px;color:var(--text-3);margin-top:6px;line-height:1.7;}
+/* 当前订阅条目 */
+.sub-item{display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+.sub-item__main{flex:1;min-width:240px;}
+.sub-item__name{font-size:15px;font-weight:600;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.sub-item__meta{font-size:12px;color:var(--text-3);margin-top:4px;}
+.sub-item__bar{max-width:420px;margin-top:10px;}
+/* 充值摘要行 */
+.recharge-summary{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;font-size:13px;color:var(--text-3);}
+.recharge-summary .amt{font-family:var(--font-num);font-size:22px;font-weight:600;color:var(--text-1);}
+/* 窄表单卡 */
+.card--narrow{max-width:640px;}
+@media (max-width:640px){.model-checks{grid-template-columns:1fr;}}
+/* 亦 OpenID 快捷登录 */
+.auth-divider{display:flex;align-items:center;gap:12px;margin:18px 0 14px;color:var(--text-3);font-size:12px;}
+.auth-divider::before,.auth-divider::after{content:"";flex:1;height:1px;background:var(--border-2);}
+.oauth-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:9px;
+  padding:11px 14px;border:1px solid var(--border-2);border-radius:var(--r-md);background:#fff;
+  color:var(--text-1);font-size:14px;font-weight:500;cursor:pointer;transition:all .15s;font-family:inherit;}
+.oauth-btn:hover{border-color:var(--brand-400);background:var(--brand-50);}
+.oauth-btn__ic{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#2b3a67,#3a5bd9);
+  color:#fff;display:grid;place-items:center;font-size:11px;font-weight:800;flex:none;letter-spacing:.5px;}
+/* 个人设置：账号绑定卡片 */
+.bind-card{display:flex;align-items:center;gap:14px;padding:16px 18px;border:1px solid var(--border-2);
+  border-radius:var(--r-lg);background:var(--bg-card);max-width:640px;margin-top:14px;}
+.bind-card__ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;flex:none;
+  background:linear-gradient(135deg,#2b3a67,#3a5bd9);color:#fff;}
+.bind-card__ic span{color:#fff;width:22px;height:22px;}
+.bind-card__main{flex:1;min-width:0;}
+.bind-card__name{font-size:14px;font-weight:600;color:var(--text-1);}
+.bind-card__meta{font-size:12px;color:var(--text-3);margin-top:2px;word-break:break-all;}
+/* ===== 通知铃铛下拉 ===== */
+.notif-wrap{position:relative;}
+.notif-panel{position:absolute;top:44px;right:0;width:300px;background:var(--bg-1);border:1px solid var(--border);border-radius:var(--r-md);box-shadow:0 10px 30px rgba(0,0,0,.14);z-index:120;display:none;overflow:hidden;}
+.notif-panel.is-open{display:block;}
+.notif-panel__head{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--border);font-size:13px;}
+.notif-panel__list{max-height:300px;overflow-y:auto;}
+.notif-panel__foot{padding:10px 14px;text-align:center;font-size:12px;color:var(--accent);cursor:pointer;border-top:1px solid var(--border);}
+.notif-panel__foot:hover{background:var(--bg-hover);}
+.notif-item{display:flex;gap:10px;padding:11px 14px;cursor:pointer;border-bottom:1px solid var(--border);}
+.notif-item:last-child{border-bottom:none;}
+.notif-item:hover{background:var(--bg-hover);}
+.notif-item__dot{width:7px;height:7px;border-radius:50%;background:var(--accent);margin-top:6px;flex-shrink:0;}
+.notif-item.is-read .notif-item__dot{background:var(--text-4);}
+.notif-item__title{font-size:13px;font-weight:600;}
+.notif-item.is-read .notif-item__title{color:var(--text-3);font-weight:500;}
+.notif-item__time{font-size:11px;color:var(--text-4);margin-top:3px;}
+.link-btn{background:none;border:none;color:var(--accent);cursor:pointer;font-size:12px;padding:2px 6px;}
+.link-btn:hover{text-decoration:underline;}
+#hd-bell-dot{display:none;position:absolute;top:4px;right:5px;min-width:15px;height:15px;padding:0 4px;border-radius:8px;background:#e5484d;color:#fff;font-size:10px;line-height:15px;text-align:center;font-family:var(--font-num);}
+#hd-bell-dot.is-num{font-size:9px;}
+/* ===== 通知视图列表 ===== */
+.notif-list{display:flex;flex-direction:column;gap:10px;}
+.notif-card{display:flex;gap:12px;padding:16px 18px;}
+.notif-card__tag{flex-shrink:0;}
+.notif-card__body{flex:1;min-width:0;}
+.notif-card__title{font-size:14px;font-weight:600;margin-bottom:5px;}
+.notif-card__content{font-size:13px;color:var(--text-2);line-height:1.7;white-space:pre-wrap;word-break:break-word;}
+.notif-card__time{font-size:11px;color:var(--text-4);margin-top:8px;}
+.notif-card.is-read .notif-card__title{color:var(--text-3);}
+.notif-card.is-read .notif-card__content{color:var(--text-3);}
+.notif-card:not(.is-read){border-left:3px solid var(--accent);}
+/* ===== 发票额度卡 ===== */
+.credit-banner{display:flex;gap:10px;align-items:flex-start;border-radius:var(--r-md);padding:12px 16px;margin-bottom:14px;font-size:13px;}
+.credit-banner--warn{background:#fff7e8;border:1px solid #f5d9a8;color:#9a6700;}
+.credit-banner--ok{background:#e8f9ed;border:1px solid #b9e6c5;color:#187a44;}
+.credit-banner b{font-size:13px;color:inherit;}
+.credit-banner__sub{display:block;font-size:12px;color:var(--text-3);margin-top:2px;}
+/* ===== 授信卡片（首页紧凑版） ===== */
+.credit-mini{display:flex;align-items:center;gap:22px;background:var(--bg-card);border:1px solid var(--border-1);border-radius:var(--r-lg);padding:13px 18px;margin-bottom:14px;}
+.credit-mini__name{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--text-1);white-space:nowrap;}
+.credit-mini__name i{color:var(--brand-600);}
+.credit-mini__nums{display:flex;gap:26px;flex:1;}
+.credit-mini__num .k{font-size:11px;color:var(--text-3);margin-bottom:2px;}
+.credit-mini__num .v{font-family:var(--font-num);font-size:16px;font-weight:600;color:var(--text-1);}
+.credit-mini__num .u{font-size:10px;color:var(--text-4);}
+.credit-mini__num.is-warn .v{color:#b45309;}
+.credit-mini__ops{display:flex;gap:8px;align-items:center;}
+@media (max-width:720px){.credit-mini{flex-wrap:wrap;gap:10px 18px;}.credit-mini__nums{flex:1 1 100%;gap:18px;order:3;}}
+.td-sub{display:block;font-size:11px;color:var(--text-3);margin-top:1px;font-weight:400;}
+.avatar-field{display:flex;gap:12px;align-items:center;}
+.avatar--preview{width:52px;height:52px;font-size:18px;margin-left:0;background-size:cover;background-position:center;flex:none;}
+.inv-quota{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px;}
+.inv-quota__item{background:var(--bg-card);border:1px solid var(--border-1);border-radius:var(--r-md);padding:16px 18px;}
+.inv-quota__item .k{font-size:12px;color:var(--text-3);margin-bottom:6px;}
+.inv-quota__item .v{font-family:var(--font-num);font-size:22px;font-weight:600;color:var(--text-1);}
+.inv-quota__item--main{background:linear-gradient(135deg,rgba(91,108,255,.08),rgba(124,92,255,.06));border-color:rgba(91,108,255,.25);}
+.inv-quota__item--main .v{color:var(--brand-700);}
+@media (max-width:640px){.inv-quota{grid-template-columns:1fr;}}
+/* ===== API 对接教程 ===== */
+.apidoc-item{background:var(--bg-card);border:1px solid var(--border-1);border-radius:var(--r-lg);padding:18px 20px;margin-bottom:14px;}
+.apidoc-item__head{display:flex;gap:8px;align-items:center;margin-bottom:8px;}
+.apidoc-item__icon{width:28px;height:28px;border-radius:8px;background:var(--brand-50);color:var(--brand-600);display:grid;place-items:center;flex:none;}
+.apidoc-item__title{font-size:15px;color:var(--text-1);}
+.apidoc-item__desc{font-size:12.5px;color:var(--text-3);line-height:1.8;margin:0 0 12px;}
+.apidoc-block{border:1px solid var(--border-1);border-radius:var(--r-md);margin-bottom:10px;overflow:hidden;}
+.apidoc-block:last-child{margin-bottom:0;}
+.apidoc-block__head{display:flex;gap:10px;align-items:center;padding:8px 12px;background:var(--gray-1);border-bottom:1px solid var(--border-1);}
+.apidoc-block__name{font-size:12.5px;font-weight:600;color:var(--text-1);}
+.apidoc-block__desc{flex:1;font-size:12px;color:var(--text-3);}
+.apidoc-code{background:#0f172a;color:#e2e8f0;font-family:var(--font-num);font-size:12.5px;line-height:1.75;padding:12px 14px;margin:0;overflow-x:auto;white-space:pre;}
+@media (max-width:720px){.apidoc-block__desc{display:none;}}
+/* ===== 注册：验证方式 ===== */
+.reg-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;background:var(--gray-1);border:1px solid var(--border-1);border-radius:var(--r-md);padding:4px;}
+.reg-tab{border:none;background:transparent;border-radius:var(--r-sm);padding:8px 0;font-size:13px;color:var(--text-3);cursor:pointer;transition:all .15s;font-weight:500;}
+.reg-tab.is-on{background:#fff;color:var(--brand-600);box-shadow:0 1px 4px rgba(16,24,40,.08);font-weight:600;}
+.reg-tab:hover:not(.is-on){color:var(--text-1);}
+.reg-send{position:absolute;right:5px;top:50%;transform:translateY(-50%);border:none;background:var(--brand-50);color:var(--brand-600);font-size:12px;font-weight:600;padding:6px 10px;border-radius:var(--r-sm);cursor:pointer;white-space:nowrap;transition:all .15s;}
+.reg-send:hover:not(:disabled){background:var(--brand-100);}
+.reg-send:disabled{color:var(--text-4);background:var(--gray-1);cursor:not-allowed;}
+.input-wrap .input.reg-account-input{padding-right:104px;}
+/* ===== 侧边栏美化 ===== */
+.side{background:linear-gradient(180deg,#fff 0%,#f7f9ff 100%);border-right:0;box-shadow:1px 0 0 var(--border-1), 0 0 24px rgba(91,108,255,.05);}
+.brand{background:linear-gradient(180deg,#fff,#fbfcff);position:relative;}
+.brand::after{content:"";position:absolute;left:18px;right:18px;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,var(--brand-200),transparent);}
+.brand__name{background:linear-gradient(120deg,var(--brand-700),#7c5cff);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:1px;}
+.brand__name small{-webkit-text-fill-color:var(--text-3);color:var(--text-3);}
+.nav__group-title{position:relative;padding:14px 12px 6px;font-weight:600;letter-spacing:1.5px;color:var(--text-4);}
+.nav__group-title::before{content:"";width:3px;height:12px;border-radius:2px;background:var(--gradient-brand);opacity:.8;}
+.nav__group-title .ic{display:none;}
+.nav__item{border-radius:10px;margin:1px 4px;height:38px;}
+.nav__item--sub{padding-left:40px;font-size:13px;height:34px;}
+.nav__item svg{transition:transform .15s,color .15s;}
+.nav__item:hover{background:linear-gradient(90deg,var(--bg-hover),#fff);color:var(--brand-700);}
+.nav__item:hover svg{transform:translateX(1px) scale(1.06);color:var(--brand-500);}
+.nav__item.is-active{background:linear-gradient(90deg,rgba(91,108,255,.10),rgba(124,92,255,.06));box-shadow:inset 0 0 0 1px rgba(91,108,255,.12);}
+.nav__item.is-active::before{left:0;top:7px;bottom:7px;width:3.5px;border-radius:4px;background:linear-gradient(180deg,var(--brand-500),#7c5cff);}
+.side__balance{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--brand-600) 0%,#7c5cff 100%);border:0;color:#fff;box-shadow:0 6px 18px rgba(91,108,255,.28);}
+.side__balance::before{content:"";position:absolute;right:-24px;top:-24px;width:90px;height:90px;border-radius:50%;background:rgba(255,255,255,.14);}
+.side__balance::after{content:"";position:absolute;right:22px;bottom:-30px;width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.10);}
+.side__balance .k{color:rgba(255,255,255,.8);font-size:11px;letter-spacing:1px;}
+.side__balance .v{color:#fff;font-size:20px;text-shadow:0 1px 4px rgba(0,0,0,.12);}
+.side__balance .btn-primary{position:relative;z-index:1;background:rgba(255,255,255,.94);color:var(--brand-700);border:0;box-shadow:0 2px 8px rgba(0,0,0,.12);}
+.side__balance .btn-primary:hover{background:#fff;}
+/* ===== 登录/注册卡片切换 ===== */
+#view-login, #view-register { display: none; }
+#view-login.is-active, #view-register.is-active { display: block; }

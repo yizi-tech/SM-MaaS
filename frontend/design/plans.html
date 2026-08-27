@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>订阅套餐 · MASS</title>
+<link rel="stylesheet" href="assets/design.css" />
+<style>
+  .plans { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap); }
+  @media (max-width:760px){ .plans{ grid-template-columns:1fr; } }
+  .plan-card { background:var(--card); border-radius:22px; box-shadow:var(--shadow); padding:22px; display:flex; flex-direction:column; position:relative; overflow:hidden; }
+  .plan-card.is-featured { border:1.5px solid transparent; background:linear-gradient(#fff,#fff) padding-box, var(--brand-grad) border-box; box-shadow:0 12px 30px rgba(67,97,238,.18); }
+  .plan-card .flag { position:absolute; top:14px; right:-30px; transform:rotate(45deg); background:var(--brand-grad); color:#fff; font-size:11px; font-weight:700; padding:4px 36px; }
+  .plan-name { font-size:18px; font-weight:700; }
+  .plan-price { margin:10px 0 2px; font-size:30px; font-weight:800; letter-spacing:-.5px; }
+  .plan-price small { font-size:13px; font-weight:500; color:var(--label-3); }
+  .plan-desc { font-size:13px; color:var(--label-2); min-height:38px; }
+  .plan-feats { list-style:none; padding:0; margin:14px 0 18px; display:flex; flex-direction:column; gap:9px; }
+  .plan-feats li { font-size:13px; color:var(--label); display:flex; gap:8px; align-items:center; }
+  .plan-feats li .ic { color:var(--green); }
+  .plan-card .btn { margin-top:auto; }
+</style>
+</head>
+<body>
+  <nav class="navbar">
+    <span class="navbar__logo"><span data-i="zap" data-sz="18" style="color:#fff"></span></span>
+    <span class="navbar__title">MAAS</span>
+    <span class="navbar__spacer"></span>
+    <span class="navbar__avatar">U</span>
+  </nav>
+
+  <main class="page">
+    <div class="page-head">
+      <div><h1>订阅套餐</h1><div class="sub">按量或包月，灵活匹配你的业务规模</div></div>
+    </div>
+
+    <section class="plans">
+      <article class="plan-card">
+        <div class="plan-name">基础版</div>
+        <div class="plan-price">¥0<small> / 月</small></div>
+        <div class="plan-desc">适合个人开发者试用全部模型</div>
+        <ul class="plan-feats">
+          <li><span class="ic" data-i="check" data-sz="15"></span>赠送 50K Token / 月</li>
+          <li><span class="ic" data-i="check" data-sz="15"></span>全部 chat 模型</li>
+          <li><span class="ic" data-i="check" data-sz="15"></span>社区支持</li>
+        </ul>
+        <button class="btn btn-ghost" onclick="MD.toast('已选择基础版','info')">当前套餐</button>
+      </article>
+
+      <article class="plan-card is-featured">
+        <div class="flag">性价比之选</div>
+        <div class="plan-name">专业版</div>
+        <div class="plan-price">¥99<small> / 月</small></div>
+        <div class="plan-desc">适合小团队稳定生产调用</div>
+        <ul class="plan-feats">
+          <li><span class="ic" data-i="check" data-sz="15"></span>含 2M Token / 月</li>
+          <li><span class="ic" data-i="check" data-sz="15"></span>全部模型 + 高并发</li>
+          <li><span class="ic" data-i="check" data-sz="15"></span>用量告警与配额</li>
+          <li><span class="ic" data-i="check" data-sz="15"></span>优先工单支持</li>
+        </ul>
+        <button class="btn btn-primary" onclick="MD.toast('订阅专业版（原型）','success')">升级专业版</button>
+      </article>
+
+      <article class="plan-card">
+        <div class="plan-name">企业版</div>
+        <div class="plan-price">定制<small> / 月</small></div>
+        <div class="plan-desc">适合合规与大规模定制需求</div>
+        <ul class="plan-feats">
+          <li><span class="ic" data-i="check" data-sz="15"></span>不限 Token 额度</li>
+          <li><span class="ic" data-i="check" data-sz="15"></span>私有化 / 专属模型</li>
+          <li><span class="ic" data-i="check" data-sz="15"></span>SSO 与审计</li>
+          <li><span class="ic" data-i="check" data-sz="15"></span>专属客户成功</li>
+        </ul>
+        <button class="btn btn-ghost" onclick="MD.toast('联系商务','info')">联系商务</button>
+      </article>
+    </section>
+  </main>
+
+  <script src="assets/design.js"></script>
+</body>
+</html>

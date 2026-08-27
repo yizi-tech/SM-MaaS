@@ -1,0 +1,9 @@
+DO $$
+BEGIN
+   IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'mass') THEN
+      CREATE ROLE mass LOGIN PASSWORD 'mass123';
+   END IF;
+END
+$$;
+
+ALTER ROLE mass WITH LOGIN PASSWORD 'mass123' CREATEDB;

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>API Keys · MASS</title>
+<link rel="stylesheet" href="assets/design.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <span class="navbar__logo"><span data-i="zap" data-sz="18" style="color:#fff"></span></span>
+    <span class="navbar__title">MAAS</span>
+    <span class="navbar__spacer"></span>
+    <span class="navbar__avatar">U</span>
+  </nav>
+
+  <main class="page">
+    <div class="page-head">
+      <div>
+        <h1>API Keys</h1>
+        <div class="sub">为你的应用签发调用密钥 · 完整密钥仅在创建时展示一次</div>
+      </div>
+      <button class="btn btn-primary" onclick="MD.toast('新建 Key（原型）','info')"><span data-i="plus" data-sz="15"></span>新建 Key</button>
+    </div>
+
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr><th>名称</th><th>前缀</th><th>模型权限</th><th>状态</th><th>最后使用</th><th>创建时间</th><th>操作</th></tr>
+        </thead>
+        <tbody id="keys-tbody">
+          <tr>
+            <td style="font-weight:600;">my-project-key</td>
+            <td class="mono">sk-prod-7f3a…</td>
+            <td>全部模型</td>
+            <td><span class="tag tag--success">启用</span></td>
+            <td class="num">2 分钟前</td>
+            <td class="num">2026-08-01</td>
+            <td>
+              <a style="color:var(--brand);margin-right:10px;cursor:pointer;" onclick="MD.toast('已复制','success')"><span data-i="copy" data-sz="14"></span></a>
+              <a style="color:var(--red);cursor:pointer;" onclick="MD.toast('已吊销','error')"><span data-i="trash" data-sz="14"></span></a>
+            </td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">test-key</td>
+            <td class="mono">sk-test-91bd…</td>
+            <td>仅 chat 模型</td>
+            <td><span class="tag tag--warn">已停用</span></td>
+            <td class="num">3 天前</td>
+            <td class="num">2026-07-20</td>
+            <td>
+              <a style="color:var(--brand);margin-right:10px;cursor:pointer;" onclick="MD.toast('已复制','success')"><span data-i="copy" data-sz="14"></span></a>
+              <a style="color:var(--red);cursor:pointer;" onclick="MD.toast('已吊销','error')"><span data-i="trash" data-sz="14"></span></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="assets/design.js"></script>
+</body>
+</html>

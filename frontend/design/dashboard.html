@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>概览 · MASS</title>
+<link rel="stylesheet" href="assets/design.css" />
+<style>
+  .quick { margin-bottom: var(--gap); }
+  .hero-balance { font-size: 34px; font-weight: 700; letter-spacing: -0.6px; }
+  .hero-balance .cur { font-size: 20px; font-weight: 600; color: var(--label-2); margin-right: 2px; }
+  .hero-balance .unit { font-size: 13px; font-weight: 500; color: var(--label-3); margin-left: 6px; }
+  .plan { padding: 14px 0; }
+  .plan__row { display: flex; align-items: center; justify-content: space-between; }
+  .plan__name { font-size: 14px; font-weight: 600; }
+  .plan__rate { font-size: 13px; color: var(--label-2); font-variant-numeric: tabular-nums; }
+  .plan__meta { font-size: 12px; color: var(--label-3); font-variant-numeric: tabular-nums; }
+  /* 迷你图表 */
+  .chart-wrap { height: 96px; display: flex; align-items: flex-end; gap: 6px; padding: 8px 0; }
+  .chart-wrap .bar { flex: 1; background: var(--brand-grad); border-radius: 6px 6px 3px 3px; min-height: 6px; opacity: .9; }
+  .mini-bars { display: flex; align-items: flex-end; gap: 5px; height: 64px; }
+  .mini-bars .mb { flex: 1; background: var(--brand-soft); border-radius: 5px 5px 2px 2px; }
+  .axis-x { display: flex; justify-content: space-between; font-size: 11px; color: var(--label-3); margin-top: 6px; }
+</style>
+</head>
+<body>
+  <nav class="navbar">
+    <span class="navbar__logo"><span data-i="zap" data-sz="18" style="color:#fff"></span></span>
+    <span class="navbar__title">MAAS</span>
+    <span class="navbar__spacer"></span>
+    <span class="health-pill"><span class="dot"></span>服务运行正常</span>
+    <span class="navbar__avatar">U</span>
+  </nav>
+
+  <main class="page">
+    <div class="page-head">
+      <div>
+        <h1>欢迎回来 👋</h1>
+        <div class="sub" id="today-sub">今天也是接入模型的好日子</div>
+      </div>
+    </div>
+
+    <!-- 快捷入口（6 项，顺序/文案不变） -->
+    <section class="quick">
+      <div class="quick-item" onclick="MD.toast('新建 API Key（原型）','info')">
+        <span class="ic-tile"><span data-i="key" data-sz="22"></span></span>
+        <span class="quick-item__label">新建 API Key</span>
+        <span class="quick-item__hint">为调用签发密钥</span>
+      </div>
+      <div class="quick-item" onclick="MD.toast('用量账单（原型）','info')">
+        <span class="ic-tile"><span data-i="chart" data-sz="22"></span></span>
+        <span class="quick-item__label">用量账单</span>
+        <span class="quick-item__hint">请求与消费</span>
+      </div>
+      <div class="quick-item" onclick="MD.toast('订阅套餐（原型）','info')">
+        <span class="ic-tile"><span data-i="card" data-sz="22"></span></span>
+        <span class="quick-item__label">订阅套餐</span>
+        <span class="quick-item__hint">Token Plan</span>
+      </div>
+      <div class="quick-item" onclick="MD.toast('充值（原型）','info')">
+        <span class="ic-tile"><span data-i="coin" data-sz="22"></span></span>
+        <span class="quick-item__label">充值</span>
+        <span class="quick-item__hint">余额即时到账</span>
+      </div>
+      <div class="quick-item" onclick="MD.toast('实名认证（原型）','info')">
+        <span class="ic-tile"><span data-i="shield" data-sz="22"></span></span>
+        <span class="quick-item__label">实名认证</span>
+        <span class="quick-item__hint">解锁完整能力</span>
+      </div>
+      <div class="quick-item" onclick="MD.toast('API 文档（原型）','info')">
+        <span class="ic-tile"><span data-i="doc" data-sz="22"></span></span>
+        <span class="quick-item__label">API 文档</span>
+        <span class="quick-item__hint">OpenAI 兼容</span>
+      </div>
+    </section>
+
+    <!-- 关键指标（3 卡，布局不变） -->
+    <section class="row row-3" style="margin-top:var(--gap);">
+      <article class="card">
+        <div class="card__title">我的权益 <a class="link" onclick="MD.toast('查看套餐','info')">查看套餐</a></div>
+        <div class="hero-balance"><span class="cur">¥</span><span class="num">0.00</span><span class="unit">账户余额</span></div>
+        <div class="stat-sub">可用于按量付费调用 · 充值即时到账</div>
+        <div id="dash-subs" style="margin-top:12px;">
+          <div class="plan">
+            <div class="plan__row"><span class="plan__name">暂无订阅套餐</span><a class="btn btn-ghost" style="height:32px;padding:0 12px;font-size:13px;" onclick="MD.toast('去订阅','info')">去订阅 →</a></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card__title">近期消费 <a class="link" onclick="MD.toast('消费明细','info')">消费明细</a></div>
+        <div class="stat"><small>¥</small><span class="num">0.00</span></div>
+        <div class="stat-sub">近 7 天</div>
+        <div class="chart-wrap">
+          <div class="bar" style="height:40%"></div><div class="bar" style="height:62%"></div><div class="bar" style="height:35%"></div>
+          <div class="bar" style="height:78%"></div><div class="bar" style="height:55%"></div><div class="bar" style="height:88%"></div><div class="bar" style="height:48%"></div>
+        </div>
+        <div class="axis-x"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
+      </article>
+
+      <article class="card">
+        <div class="card__title">调用量 <a class="link" onclick="MD.toast('用量账单','info')">用量账单</a></div>
+        <div class="stat"><span class="num">0</span><small>Token</small></div>
+        <div class="stat-sub">近 7 天</div>
+        <div class="mini-bars">
+          <div class="mb" style="height:40%"></div><div class="mb" style="height:62%"></div><div class="mb" style="height:35%"></div>
+          <div class="mb" style="height:78%"></div><div class="mb" style="height:55%"></div><div class="mb" style="height:88%"></div><div class="mb" style="height:48%"></div>
+        </div>
+        <div class="axis-x"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
+      </article>
+    </section>
+  </main>
+
+  <script src="assets/design.js"></script>
+</body>
+</html>

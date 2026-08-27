@@ -1,0 +1,102 @@
+# MASS 平台 · 商用授权说明 / Commercial License
+
+> 本文件为 MASS 平台的商用授权条款（中英双语）。在获得著作权人书面授权前，
+> 任何人不得对本软件进行商业使用、分发、再许可或反向工程。
+> This document sets out the commercial license terms for the MASS Platform.
+> No commercial use, distribution, sublicensing or reverse engineering is
+> permitted without written authorization from the copyright holder.
+
+---
+
+## 一、版权声明 / Copyright
+
+MASS 平台（含后端服务、前端控制台、文档及附属脚本，以下简称「本软件」）的
+著作权归 **著作权人（Licensor）** 所有，并受中华人民共和国著作权法及国际条约保护。
+The copyright of the MASS Platform (including backend services, frontend consoles,
+documentation and accompanying scripts, hereinafter the "Software") is owned by the
+**copyright holder (Licensor)** and protected under the PRC Copyright Law and
+applicable international treaties.
+
+## 二、授权范围 / Grant of License
+
+1. 著作权人可依据单独的《商用授权协议》向被授权方（Licensee）授予一项有限的、
+   非独占的、不可转让的、可撤销的使用许可。
+   The Licensor may grant the Licensee a limited, non-exclusive, non-transferable,
+   revocable license under a separate Commercial License Agreement.
+2. 授权范围（如适用）可包括：在指定服务器 / 域名内部署与运行本软件、为自身
+   业务向最终用户提供 AI 能力并按本软件既有机制计费。
+   The grant (where applicable) may include: deploying and operating the Software on
+   designated servers / domains, and providing AI capabilities to the Licensee's own
+   end users with billing per the Software's built-in mechanisms.
+
+## 三、使用限制 / Restrictions
+
+未经著作权人书面同意，被授权方不得：
+Without prior written consent, the Licensee shall NOT:
+1. 对本软件进行反向工程、反编译、反汇编，或试图提取源代码；
+   reverse engineer, decompile, disassemble the Software, or attempt to derive source code;
+2. 移除、遮蔽或修改本软件中的任何版权、商标或授权声明；
+   remove, obscure or modify any copyright, trademark or license notices;
+3. 将本软件或其衍生作品进行再分发、转售、出租、出借或用于 SaaS 代运营获利
+   （除非授权协议明确允许）；
+   redistribute, resell, lease, lend or operate-as-a-service for profit any copy or
+   derivative (unless explicitly permitted);
+4. 将本软件用于任何违法、侵权或损害第三方权益的用途。
+   use the Software for any unlawful, infringing or rights-violating purpose.
+
+## 四、商标 / Trademarks
+
+「MASS」及相关标识为著作权人所有。本授权不授予任何商标使用权。
+"MASS" and related marks are owned by the Licensor. No trademark rights are granted.
+
+## 五、保证与免责 / Warranty Disclaimer
+
+本软件按「现状」提供，不提供任何明示或暗示的保证，包括但不限于对适销性、
+特定用途适用性及不侵权的保证。著作权人不保证本软件无错误或无中断运行。
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO MERCHANTABILITY, FITNESS FOR A PARTICULAR
+PURPOSE AND NON-INFRINGEMENT. The Licensor does not warrant that the Software is
+error-free or uninterrupted.
+
+## 六、责任限制 / Limitation of Liability
+
+在任何情况下，著作权人不因本软件的使用或无法使用而产生的任何间接、偶然、
+特殊或后果性损害承担责任，包括但不限于利润损失、数据丢失或业务中断。
+IN NO EVENT SHALL THE LICENSOR BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL OR
+CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE SOFTWARE,
+INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA OR BUSINESS INTERRUPTION.
+
+## 七、终止 / Termination
+
+若被授权方违反本说明或单独授权协议的任何条款，授权自动终止，且著作权人可
+要求立即停止使用并销毁所有副本。
+License terminates automatically upon any breach; the Licensor may require immediate
+cessation of use and destruction of all copies.
+
+## 八、保密 / Confidentiality
+
+被授权方对在授权过程中获知的本软件技术细节与商业信息负有保密义务。
+The Licensee shall keep confidential all technical and commercial information learned
+under the license.
+
+## 九、法律适用 / Governing Law
+
+本说明受著作权人所在地法律管辖，并按其解释（如适用，争议提交有管辖权的法院）。
+Governed by and construed under the laws of the Licensor's jurisdiction; disputes
+submitted to the competent court.
+
+---
+
+## 十、授权信息（由著作权人填写 / To be completed by the Licensor）
+
+| 项 / Item | 内容 / Value |
+|-----------|--------------|
+| 著作权人 / Licensor | 厦门亦梓科技有限公司（Xiamen Yizi Technology Co., Ltd.）· yiziyun.com |
+| 被授权方 / Licensee | ________________________ |
+| 授权类型 / License type | □ 内部部署 □ SaaS 运营 □ 源码授权 □ 其他 ____ |
+| 授权域名 / Authorized domain(s) | ________________________ |
+| 有效期 / Term | ________________________ |
+| 签署日期 / Date | ________________________ |
+
+> 本说明为模板，最终以双方签署的《商用授权协议》为准。
+> This is a template; the executed Commercial License Agreement prevails.

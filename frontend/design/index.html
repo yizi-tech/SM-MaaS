@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>MASS 视觉重设计 · 预览</title>
+<link rel="stylesheet" href="assets/design.css" />
+<style>
+  .hero { text-align:center; padding:40px 20px 24px; }
+  .hero h1 { font-size:30px; font-weight:800; letter-spacing:-.5px; }
+  .hero p { color:var(--label-2); margin-top:8px; font-size:14px; line-height:1.7; }
+  .swatches { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:18px; }
+  .sw { width:54px; text-align:center; }
+  .sw .chip { width:54px; height:54px; border-radius:14px; box-shadow:var(--shadow-sm); }
+  .sw small { display:block; font-size:10px; color:var(--label-3); margin-top:5px; }
+  .screens { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:8px; }
+  @media (max-width:820px){ .screens{ grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:520px){ .screens{ grid-template-columns:1fr;} }
+  .screen-card { background:var(--card); border-radius:16px; box-shadow:var(--shadow-sm); padding:14px; cursor:pointer; transition:.15s; }
+  .screen-card:hover{ box-shadow:var(--shadow); transform:translateY(-2px); }
+  .screen-card .thumb { height:120px; border-radius:12px; background:linear-gradient(135deg,#EEF2FF,#F5F0FF); display:flex; align-items:center; justify-content:center; font-size:30px; margin-bottom:10px; }
+  .screen-card .t { font-size:15px; font-weight:600; }
+  .screen-card .d { font-size:12px; color:var(--label-3); margin-top:2px; }
+  .notes { background:var(--card); border-radius:18px; box-shadow:var(--shadow); padding:20px; margin-top:var(--gap); }
+  .notes h3 { font-size:16px; font-weight:700; margin-bottom:10px; }
+  .notes ul { margin:0; padding-left:18px; color:var(--label-2); font-size:13px; line-height:1.9; }
+  .back { text-align:center; margin:22px 0 40px; }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="hero">
+      <span style="display:inline-flex;width:56px;height:56px;border-radius:16px;background:var(--brand-grad);align-items:center;justify-content:center;color:#fff;font-size:26px;box-shadow:0 8px 20px rgba(67,97,238,.35);">🌙</span>
+      <h1>MASS · 视觉重设计</h1>
+      <p>遵循 Apple HIG 的 iOS 化视觉语言 · 全部 CSS/JS 本地化、零 CDN<br/>保持原有布局 / 功能 / 交互不变，仅做视觉层优化</p>
+      <div class="swatches">
+        <div class="sw"><div class="chip" style="background:var(--brand-grad)"></div><small>主色</small></div>
+        <div class="sw"><div class="chip" style="background:var(--accent)"></div><small>星金</small></div>
+        <div class="sw"><div class="chip" style="background:var(--green)"></div><small>成功</small></div>
+        <div class="sw"><div class="chip" style="background:var(--orange)"></div><small>警告</small></div>
+        <div class="sw"><div class="chip" style="background:var(--red)"></div><small>危险</small></div>
+        <div class="sw"><div class="chip" style="background:var(--bg)"></div><small>背景</small></div>
+      </div>
+    </div>
+
+    <section class="screens">
+      <div class="screen-card" onclick="location.href='login.html'"><div class="thumb">🔐</div><div class="t">登录 / 注册</div><div class="d">左品牌叙事 + 右表单</div></div>
+      <div class="screen-card" onclick="location.href='dashboard.html'"><div class="thumb">🏠</div><div class="t">概览</div><div class="d">快捷入口 + 关键指标</div></div>
+      <div class="screen-card" onclick="location.href='keys.html'"><div class="thumb">🔑</div><div class="t">API Keys</div><div class="d">密钥列表管理</div></div>
+      <div class="screen-card" onclick="location.href='billing.html'"><div class="thumb">📊</div><div class="t">用量账单</div><div class="d">分段筛选 + 交易流</div></div>
+      <div class="screen-card" onclick="location.href='plans.html'"><div class="thumb">💳</div><div class="t">订阅套餐</div><div class="d">三档卡片 + 主推</div></div>
+      <div class="screen-card" onclick="location.href='recharge.html'"><div class="thumb">💰</div><div class="t">充值 / 加油包</div><div class="d">金额档 + 加油包网格</div></div>
+    </section>
+
+    <div class="notes">
+      <h3>设计决策摘要（四维度）</h3>
+      <ul>
+        <li><b>视觉美感</b>：采用“深空星月”主色（靛蓝→紫罗兰渐变）+ 星金点缀；卡片 20px 圆角、分层柔和阴影、发丝分隔线，整体现代通透。</li>
+        <li><b>信息层级</b>：余额/消费/调用量用大字号 tabular-nums 数字，标题与辅助文字用 60%/30% 透明度灰阶拉开层级；关键操作以主色实心按钮聚合。</li>
+        <li><b>操作直观</b>：可点击项 44pt+ 触控区、按压微缩放反馈；选中态（金额档/支付方式/分段控件）以主色描边或填充明确；状态用语义色标签。</li>
+        <li><b>一致性 / 品牌</b>：统一图标（内联 SVG，等效 SF Symbols）、统一字体栈（系统等效 SF Pro + 苹方）、统一圆角/间距令牌；品牌方向“深空星月”呼应 StarMoon 主题。</li>
+      </ul>
+    </div>
+
+    <div class="back"><a class="btn btn-ghost" style="height:42px;padding:0 20px;" onclick="history.length>1?history.back():location.href='/'">← 返回站点（设计中）</a></div>
+  </div>
+  <script src="assets/design.js"></script>
+</body>
+</html>

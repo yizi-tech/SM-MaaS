@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="frontend/assets/MaaSLOGO.png" alt="SM-MaaS" width="320">
+</p>
+
 # MASS 平台（Mass AI SaaS Stack）
 
 MASS 是一个 **LLM API 网关 + 计费控制台** 平台，面向需要对外提供 AI 能力并按量/按订阅计费的企业与团队。后端基于 Go / Gin / GORM / MySQL / Redis / JWT，提供模型转发（兼容 OpenAI / Anthropic 协议）、额度计费、订阅 / 加油包 / 授信、充值支付（易支付 / 原生微信支付 / 原生支付宝）、实名认证、发票、OpenID 登录、站内通知与数据留存等能力；前端为 React 控制台，分为 **用户门户** 与 **管理后台** 两个应用。
